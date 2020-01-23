@@ -44,9 +44,11 @@ const screenshotPages = async (pages, parallel) => {
 		  promises.push(browser.newPage().then(async page => {
 			await page.setViewport({ width: 1280, height: 800 })
 			try {
-			  // Only create screenshot if page.goto get's no error
-			  await page.goto(pages[elem])
-			  await page.screenshot({ path: "screenshots/" + elem  +'.png' }).then(console.log('🤞 I have kept my promise to screenshot ' + pages[elem]))
+				// Only create screenshot if page.goto get's no error
+				await page.goto(pages[elem])
+				const pageTitle = await page.title();
+
+			  await page.screenshot({ path: "screenshots/" + elem + " " + pageTitle +'.png' }).then(console.log('🤞 I have kept my promise to screenshot ' + pages[elem]))
 			} catch (err) {
 			  console.log('❌ Sorry! I couldn\'t keep my promise to screenshot ' + pages[elem])
 			}
