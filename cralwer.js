@@ -36,9 +36,9 @@ const screenshotPages = async (pages, parallel) => {
 			try {
 			  // Only create screenshot if page.goto get's no error
 			  await page.goto(pages[elem])
-			  await page.screenshot({ path: "screenshots/" + elem + ' ' + pages[elem] +'.png' }).then(console.log('🤞 I have kept my promise to screenshot ' + pages[elem]))
+			  await page.screenshot({ path: "screenshots/" + elem  +'.png' }).then(console.log('🤞 I have kept my promise to screenshot ' + pages[elem].name))
 			} catch (err) {
-			  console.log('❌ Sorry! I couldn\'t keep my promise to screenshot ' + pages[elem])
+			  console.log('❌ Sorry! I couldn\'t keep my promise to screenshot ' + pages[elem].name)
 			}
 		  }))
 		}
