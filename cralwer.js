@@ -1,12 +1,17 @@
 const puppeteer = require('puppeteer');
-const parallel = 4;
-
 const fs = require("fs");
+const rimraf = require("rimraf");
+
+const parallel = 4;
 const pages = JSON.parse(fs.readFileSync("pages.json")).pages;
 
 
 if (!fs.existsSync("screenshots")){
     fs.mkdirSync("screenshots");
+} else {
+	rimraf("screenshots", function () {
+		fs.mkdirSync("screenshots");
+	});
 };
 
 const screenshotPages = async (pages, parallel) => {

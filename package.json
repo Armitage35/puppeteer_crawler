@@ -1,12 +1,13 @@
 {
 	"name": "puppeteer_crawler",
-	"version": "0.1.0",
+	"version": "0.1.1",
 	"description": "A generic Puppetteer crawler",
 	"author": "Adrien D. Ahlqvist",
 	"license": "MIT",
 	"dependencies": {
 		"fs": "^0.0.1-security",
-		"puppeteer": "^2.0.0"
+		"puppeteer": "^2.0.0",
+		"rimraf": "^3.0.0"
 	},
 	"scripts": {
 		"start": "node cralwer.js"
