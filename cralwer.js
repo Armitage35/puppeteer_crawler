@@ -1,8 +1,13 @@
 const puppeteer = require('puppeteer')
 const parallel = 4;
-const fs = require("fs");
 
+const fs = require("fs");
 const pages = JSON.parse(fs.readFileSync("pages.json")).pages;
+
+
+if (!fs.existsSync("screenshots")){
+    fs.mkdirSync("screenshots");
+};
 
 const screenshotPages = async (pages, parallel) => {
 
@@ -40,9 +45,9 @@ const screenshotPages = async (pages, parallel) => {
 			try {
 			  // Only create screenshot if page.goto get's no error
 			  await page.goto(pages[elem])
-			  await page.screenshot({ path: "screenshots/" + elem  +'.png' }).then(console.log('🤞 I have kept my promise to screenshot ' + pages[elem].name))
+			  await page.screenshot({ path: "screenshots/" + elem  +'.png' }).then(console.log('🤞 I have kept my promise to screenshot ' + pages[elem]))
 			} catch (err) {
-			  console.log('❌ Sorry! I couldn\'t keep my promise to screenshot ' + pages[elem].name)
+			  console.log('❌ Sorry! I couldn\'t keep my promise to screenshot ' + pages[elem])
 			}
 		  }))
 		}
@@ -60,4 +65,3 @@ const screenshotPages = async (pages, parallel) => {
   }
 
   screenshotPages(pages, parallel)
-
