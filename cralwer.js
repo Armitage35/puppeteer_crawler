@@ -2,14 +2,12 @@ const puppeteer = require('puppeteer')
 const parallel = 4;
 const fs = require("fs");
 
-
-
 const pages = JSON.parse(fs.readFileSync("pages.json")).pages;
 
 const screenshotPages = async (pages, parallel) => {
 	const parallelBatches = Math.ceil(pages.length / parallel)
 
-	console.log('\nI have gotten the task of taking screenshots of ' + pages.length + ' Wikipedia articles on pages in Cologne and will take ' + parallel + ' of them in paralell.')
+	console.log('\nI have gotten the task of taking screenshots of ' + pages.length + ' pages and will take ' + parallel + ' of them in paralell.')
 
 	console.log(' This will result in ' + parallelBatches + ' batches.')
 
