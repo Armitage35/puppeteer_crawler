@@ -1,4 +1,4 @@
-const puppeteer = require('puppeteer')
+const puppeteer = require('puppeteer');
 const parallel = 4;
 
 const fs = require("fs");
@@ -22,6 +22,7 @@ const screenshotPages = async (pages, parallel) => {
 
 	// Split up the Array of pages
 	let k = 0
+
 	for (let i = 0; i < pages.length; i += parallel) {
 	  k++
 	  console.log('\nBatch ' + k + ' of ' + parallelBatches)
@@ -38,7 +39,7 @@ const screenshotPages = async (pages, parallel) => {
 		// only proceed if there is an element
 		if (pages[elem] != undefined) {
 		  // Promise to take Screenshots
-		  // promises push
+
 		  console.log('🖖 I promise to screenshot: ' + pages[elem])
 		  promises.push(browser.newPage().then(async page => {
 			await page.setViewport({ width: 1280, height: 800 })
