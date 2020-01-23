@@ -5,6 +5,7 @@
 	"author": "Adrien D. Ahlqvist",
 	"license": "MIT",
 	"dependencies": {
+		"fs": "^0.0.1-security",
 		"puppeteer": "^2.0.0"
 	},
 	"scripts": {

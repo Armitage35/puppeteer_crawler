@@ -1,9 +1,15 @@
+// Packages
 const puppeteer = require("puppeteer");
-const pages = fs.readFileSync;
+const fs = require("fs");
+
+// User defined variables
+const pages = JSON.parse(fs.readFileSync("pages.json")).pages;
 
 console.log("Crawling 🚀");
 
-console.log(pages);
+for (const page of pages) (
+	console.log(page)
+);
 
 (async () => {
 	try {
