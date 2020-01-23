@@ -1,20 +1,28 @@
-const puppeteer = require('puppeteer')
+const puppeteer = require('puppeteer');
 const parallel = 4;
+
 const fs = require("fs");
-
-
-
 const pages = JSON.parse(fs.readFileSync("pages.json")).pages;
 
+
+if (!fs.existsSync("screenshots")){
+    fs.mkdirSync("screenshots");
+};
+
 const screenshotPages = async (pages, parallel) => {
+
+	console.log("Crawling launched 🚀");
+	console.log("");
+
 	const parallelBatches = Math.ceil(pages.length / parallel)
 
-	console.log('\nI have gotten the task of taking screenshots of ' + pages.length + ' Wikipedia articles on pages in Cologne and will take ' + parallel + ' of them in paralell.')
+	console.log('\nI have gotten the task of taking screenshots of ' + pages.length + ' pages and will take ' + parallel + ' of them in paralell.')
 
 	console.log(' This will result in ' + parallelBatches + ' batches.')
 
 	// Split up the Array of pages
 	let k = 0
+
 	for (let i = 0; i < pages.length; i += parallel) {
 	  k++
 	  console.log('\nBatch ' + k + ' of ' + parallelBatches)
@@ -31,16 +39,18 @@ const screenshotPages = async (pages, parallel) => {
 		// only proceed if there is an element
 		if (pages[elem] != undefined) {
 		  // Promise to take Screenshots
-		  // promises push
-		  console.log('🖖 I promise to screenshot: ' + pages[elem].name)
+
+		  console.log('🖖 I promise to screenshot: ' + pages[elem])
 		  promises.push(browser.newPage().then(async page => {
 			await page.setViewport({ width: 1280, height: 800 })
 			try {
-			  // Only create screenshot if page.goto get's no error
-			  await page.goto(pages[elem])
-			  await page.screenshot({ path: elem + ' ' + pages[elem].name +'.png' }).then(console.log('🤞 I have kept my promise to screenshot ' + pages[elem].name))
+				// Only create screenshot if page.goto get's no error
+				await page.goto(pages[elem])
+				const pageTitle = await page.title();
+
+			  await page.screenshot({ path: "screenshots/" + elem + " " + pageTitle +'.png' }).then(console.log('🤞 I have kept my promise to screenshot ' + pages[elem]))
 			} catch (err) {
-			  console.log('❌ Sorry! I couldn\'t keep my promise to screenshot ' + pages[elem].name)
+			  console.log('❌ Sorry! I couldn\'t keep my promise to screenshot ' + pages[elem])
 			}
 		  }))
 		}
@@ -52,7 +62,9 @@ const screenshotPages = async (pages, parallel) => {
 
 	  console.log('\nI finished this batch. I\'m ready for the next batch');
 	}
+
+	console.log("");
+	console.log("Crawling completed 👍");
   }
 
   screenshotPages(pages, parallel)
-
