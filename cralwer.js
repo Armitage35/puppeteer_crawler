@@ -5,6 +5,10 @@ const fs = require("fs");
 const pages = JSON.parse(fs.readFileSync("pages.json")).pages;
 
 const screenshotPages = async (pages, parallel) => {
+
+	console.log("Crawling launched 🚀");
+	console.log("");
+
 	const parallelBatches = Math.ceil(pages.length / parallel)
 
 	console.log('\nI have gotten the task of taking screenshots of ' + pages.length + ' pages and will take ' + parallel + ' of them in paralell.')
@@ -50,6 +54,9 @@ const screenshotPages = async (pages, parallel) => {
 
 	  console.log('\nI finished this batch. I\'m ready for the next batch');
 	}
+
+	console.log("");
+	console.log("Crawling completed 👍");
   }
 
   screenshotPages(pages, parallel)
