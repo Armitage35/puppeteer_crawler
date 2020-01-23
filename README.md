@@ -8,6 +8,6 @@ This repo provide its users with a script that enables them to crawl and take sc
 
 ## How to use
 
-1. Upload the list of URLs you want to parse
+1. Upload the list of URLs you want to parse in the `pages.json` file
 2. Run `yarn start` or `npm start`
 3. Once complete, your screenshots will be available within a "screenshots" folder 
