@@ -1,0 +1,10 @@
+{
+	"name": "puppeteer_crawler",
+	"version": "0.0.1",
+	"description": "A generic Puppetteer crawler",
+	"author": "Adrien D. Ahlqvist",
+	"license": "MIT",
+	"dependencies": {
+    "puppeteer": "^2.0.0"
+  }
+}
