@@ -1,23 +1,23 @@
 const puppeteer = require('puppeteer');
-const fs = require("fs");
-const rimraf = require("rimraf");
+const fs = require('fs');
+const rimraf = require('rimraf');
 
 const parallel = 4;
-const pages = JSON.parse(fs.readFileSync("pages.json")).pages;
+const pages = JSON.parse(fs.readFileSync('pages.json')).pages;
 
 
-if (!fs.existsSync("screenshots")){
-    fs.mkdirSync("screenshots");
+if (!fs.existsSync('screenshots')){
+    fs.mkdirSync('screenshots');
 } else {
-	rimraf("screenshots", function () {
-		fs.mkdirSync("screenshots");
+	rimraf('screenshots', function () {
+		fs.mkdirSync('screenshots');
 	});
 };
 
 const screenshotPages = async (pages, parallel) => {
 
-	console.log("Crawling launched 🚀");
-	console.log("");
+	console.log('Crawling launched 🚀');
+	console.log('');
 
 	const parallelBatches = Math.ceil(pages.length / parallel)
 
@@ -53,7 +53,7 @@ const screenshotPages = async (pages, parallel) => {
 				await page.goto(pages[elem])
 				const pageTitle = await page.title();
 
-			  await page.screenshot({ path: "screenshots/" + elem + " " + pageTitle +'.png' }).then(console.log('🤞 I have kept my promise to screenshot ' + pages[elem]))
+			  await page.screenshot({ path: 'screenshots/' + elem + ' ' + pageTitle +'.png' }).then(console.log('🤞 I have kept my promise to screenshot ' + pages[elem]))
 			} catch (err) {
 			  console.log('❌ Sorry! I couldn\'t keep my promise to screenshot ' + pages[elem])
 			}
@@ -68,8 +68,8 @@ const screenshotPages = async (pages, parallel) => {
 	  console.log('\nI finished this batch. I\'m ready for the next batch');
 	}
 
-	console.log("");
-	console.log("Crawling completed 👍");
+	console.log('');
+	console.log('Crawling completed 👍');
   }
 
   screenshotPages(pages, parallel)
