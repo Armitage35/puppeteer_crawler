@@ -6,7 +6,7 @@
 	"license": "MIT",
 	"dependencies": {
 		"fs": "^0.0.1-security",
-		"puppeteer": "^3.0.0",
+		"puppeteer": "^3.0.2",
 		"rimraf": "^3.0.2"
 	},
 	"scripts": {
