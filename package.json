@@ -13,6 +13,6 @@
 		"start": "node cralwer.js"
 	},
 	"devDependencies": {
-		"eslint": "^7.1.0"
+		"eslint": "^7.6.0"
 	}
 }
